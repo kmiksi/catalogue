@@ -45,11 +45,45 @@ class ClienteModel extends Model
         return $rows;
     }
 
+    public function find($id)
+    {
+        $sql = "
+            SELECT
+              Pessoa.id,
+              Pessoa.nome,
+              Pessoa.email,
+              Pessoa.telefone
+            FROM pessoas AS Pessoa
+            WHERE Pessoa.deleted IS NULL
+              AND Pessoa.id = :id";
+        $return = $this->query($sql, compact('id'));
+        return $return[0];
+    }
+
+    public function delete($id)
+    {
+        $sql = "
+            DELETE FROM pessoas
+            WHERE id = :id";
+        $return = $this->query($sql, compact('id'));
+        return $return[0];
+    }
+
     public function add(array $data)
     {
         $sql = "
             INSERT INTO pessoas (nome, email, telefone, foto, created)
             VALUES (:nome, :email, :telefone, :foto, NOW());";
+        return $this->query($sql, $data);
+    }
+
+    public function edit($id, array $data)
+    {
+        $data[':id'] = $id;
+        $sql = "
+            UPDATE pessoas
+            SET nome = :nome, email = :email, telefone = :telefone, updated = NOW()
+            WHERE id = :id";
         return $this->query($sql, $data);
     }
 

@@ -22,9 +22,13 @@
             <tr>
                 <th scope="row"><?= $cliente->id ?></th>
                 <td></td>
-                <td><?= $cliente->name ?></td>
+                <td><?= $cliente->nome ?></td>
                 <td><?= $cliente->email ?></td>
                 <td><?= $cliente->telefone ?></td>
+                <td>
+                    <a class="btn btn-primary btn-sm" href="<?= BASE_URL ?>cliente/edit/<?= $cliente->id ?>">edit</a>
+                    <a class="btn btn-danger btn-sm" href="<?= BASE_URL ?>cliente/del/<?= $cliente->id ?>">del</a>
+                </td>
             </tr>
         <?php } ?>
         </tbody>

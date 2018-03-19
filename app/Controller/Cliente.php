@@ -56,4 +56,36 @@ class Cliente extends Controller
         }
     }
 
+    public function edit($id)
+    {
+        $this->model = new ClienteModel();
+
+        if ($this->requestMethodIs('post')) {
+            $form_data = $this->formData(['nome', 'email', 'telefone']);
+
+            $success = $this->model->edit($id, $form_data);
+
+            if ($success !== false) {
+                $this->redirect('/');
+            } else {
+                $message = 'ERROR: Error changing data, please try again.';
+                $this->set(compact('message'));
+                $this->render('fail');
+            }
+        } else {
+            $cliente = $this->model->find($id);
+
+            $this->set(compact('cliente'));
+        }
+    }
+
+    public function del($id)
+    {
+        $this->model = new ClienteModel();
+
+        $defunct = $this->model->delete($id);
+
+        $this->redirect('/');
+    }
+
 }
