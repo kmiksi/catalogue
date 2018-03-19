@@ -9,6 +9,9 @@ class Controller
     /** @var array Store variables to be passed to view rendering */
     public $viewVars = [];
 
+    /** @var Model */
+    public $model;
+
     /**
      * Store values to be passed to view rendering
      * @param string|array $name The name of variable, or an array with name=>value (php method compact() can help you)

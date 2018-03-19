@@ -1,7 +1,7 @@
 <?php
 /**
- * @var array $clients {id,name,email,telefone,foto}
- * @var array $pagination {total,page,limit}
+ * @var array $clientes {id,name,email,telefone,foto}
+ * @var array $pagination {total,page,pages,limit}
  */
 ?>
 <div class="container">
@@ -17,13 +17,13 @@
         </tr>
         </thead>
         <tbody>
-        <?php foreach ($clients as $cliente) { ?>
+        <?php foreach ($clientes as $cliente) { ?>
             <tr>
-                <th scope="row"><?= $cliente['id'] ?></th>
+                <th scope="row"><?= $cliente->id ?></th>
                 <td></td>
-                <td><?= $cliente['name'] ?></td>
-                <td><?= $cliente['email'] ?></td>
-                <td><?= $cliente['telefone'] ?></td>
+                <td><?= $cliente->name ?></td>
+                <td><?= $cliente->email ?></td>
+                <td><?= $cliente->telefone ?></td>
             </tr>
         <?php } ?>
         </tbody>
