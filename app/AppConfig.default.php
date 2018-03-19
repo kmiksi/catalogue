@@ -6,7 +6,7 @@
 class AppConfig
 {
 
-    const DEFAULT_CONTROLLER = 'Home';
+    const DEFAULT_CONTROLLER = 'Cliente';
     const DEFAULT_ACTION = 'index';
 
     const DB_TYPE = 'mysql';

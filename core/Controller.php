@@ -80,4 +80,10 @@ class Controller
         return $form_data;
     }
 
+    public function redirect($url)
+    {
+        header('Location: ' . BASE_URL . rtrim($url, '/'));
+        exit(0);
+    }
+
 }

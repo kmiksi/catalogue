@@ -14,6 +14,7 @@
             <th scope="col">Nome</th>
             <th scope="col">E-mail</th>
             <th scope="col">Fone</th>
+            <th><a class="btn btn-success btn-sm" href="<?= BASE_URL ?>cliente/add">+</a></th>
         </tr>
         </thead>
         <tbody>

@@ -22,10 +22,8 @@ class ClienteModel extends Model
         $total = $this->query("
             SELECT COUNT(*) AS total
             FROM pessoas AS Pessoa
-              INNER JOIN clientes AS Cliente
-                ON Pessoa.id = Cliente.pessoa_id
-            WHERE Cliente.deleted IS NULL
-            ORDER BY Cliente.created DESC");
+            WHERE Pessoa.deleted IS NULL
+            ORDER BY Pessoa.created DESC");
         $total = $total[0]->total;
         $pages = ceil($total[0]->total / $limit);
         $this->pagination = compact('total', 'page', 'pages', 'limit');
@@ -39,14 +37,20 @@ class ClienteModel extends Model
               Pessoa.foto,
               Pessoa.created
             FROM pessoas AS Pessoa
-              INNER JOIN clientes AS Cliente
-                ON Pessoa.id = Cliente.pessoa_id
-            WHERE Cliente.deleted IS NULL
-            ORDER BY Cliente.created DESC
+            WHERE Pessoa.deleted IS NULL
+            ORDER BY Pessoa.created DESC
             LIMIT $limit OFFSET $offset";
         $rows = $this->query($sql);
 
         return $rows;
+    }
+
+    public function add(array $data)
+    {
+        $sql = "
+            INSERT INTO pessoas (nome, email, telefone, foto, created)
+            VALUES (:nome, :email, :telefone, :foto, NOW());";
+        return $this->query($sql, $data);
     }
 
 }
