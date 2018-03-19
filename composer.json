@@ -1,0 +1,12 @@
+{
+  "name": "kmiksi/catalogue",
+  "description": "Forms with fun",
+  "type": "project",
+  "authors": [
+    {
+      "name": "Carlos Eduardo Alves",
+      "email": "kmiksi@github.com"
+    }
+  ],
+  "require": {}
+}
