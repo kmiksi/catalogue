@@ -83,9 +83,15 @@ class Cliente extends Controller
     {
         $this->model = new ClienteModel();
 
-        $defunct = $this->model->delete($id);
+        $success = $this->model->delete($id);
 
-        $this->redirect('/');
+        if ($success !== false) {
+            $this->redirect('/');
+        } else {
+            $message = 'ERROR: Error changing data, please try again.';
+            $this->set(compact('message'));
+            $this->render('fail');
+        }
     }
 
 }

@@ -63,10 +63,10 @@ class ClienteModel extends Model
     public function delete($id)
     {
         $sql = "
-            DELETE FROM pessoas
+            UPDATE pessoas
+            SET deleted = NOW()
             WHERE id = :id";
-        $return = $this->query($sql, compact('id'));
-        return $return[0];
+        return $this->query($sql, compact('id'));
     }
 
     public function add(array $data)
