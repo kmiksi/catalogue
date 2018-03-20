@@ -4,6 +4,12 @@
  * @var array $pagination {total,page,pages,limit}
  */
 ?>
+<style>
+    img.user-pic {
+        max-width: 50px;
+        max-height: 50px;
+    }
+</style>
 <div class="container">
     <h1>Lista de clientes:</h1>
     <table class="table">
@@ -21,7 +27,11 @@
         <?php foreach ($clientes as $cliente) { ?>
             <tr>
                 <th scope="row"><?= $cliente->id ?></th>
-                <td></td>
+                <td><?php
+                    if (!empty($cliente->foto) && is_readable(ROOT . 'public/thumbs/' . $cliente->foto)) {
+                        ?><img src="<?= BASE_URL . 'thumbs/' . $cliente->foto ?>" alt="" class="user-pic"><?php
+                    }
+                    ?></td>
                 <td><?= $cliente->nome ?></td>
                 <td><?= $cliente->email ?></td>
                 <td><?= $cliente->telefone ?></td>
@@ -33,7 +43,7 @@
         <?php } ?>
         </tbody>
     </table>
-    <?php if ($navigation['pages'] > 1) { ?>
+    <?php if ($pagination['pages'] > 1) { ?>
         <nav aria-label="navigation">
             <ul class="pagination justify-content-end">
                 <li class="page-item disabled">
